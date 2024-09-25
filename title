@@ -1,0 +1,14 @@
+<style>
+  body {
+    background-color: #FFFFFF; /* White background */
+  }
+  .manifestation-journal {
+    font-family: serif; /* Serif font */
+    color: #f49cc8; /* Color f49cc8 */
+    font-size: 36px; /* You can adjust the font size as needed */
+  }
+</style>
+
+<body>
+  <p class="manifestation-journal"><bold>A Guided Journal for Daily Manifestation</bold></p>
+</body>
