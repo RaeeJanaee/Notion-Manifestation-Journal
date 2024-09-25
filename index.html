@@ -1,14 +1,103 @@
-<style>
-  body {
-    background-color: #FFFFFF; /* White background */
-  }
-  .manifestation-journal {
-    font-family: serif; /* Serif font */
-    color: #f49cc8; /* Color f49cc8 */
-    font-size: 24px; /* You can adjust the font size as needed */
-  }
-</style>
-
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manifestation Journal with Quote Generator</title>
+  <style>
+    /* Styles for the manifestation journal and quote generator */
+    body {
+      background-color: #FFFFFF; /* White background */
+      text-align: center; /* Center the quote horizontally */
+    }
+    .manifestation-journal {
+      font-family: serif; /* Serif font */
+      color: #f49cc8; /* Color f49cc8 */
+      font-size: 24px; /* You can adjust the font size as needed */
+      white-space: nowrap; /* Keep the text on one line */
+      margin-bottom: 20px; /* Add some margin to separate the title and quote */
+      text-align: center; /* Center the title */
+    }
+    .quote {
+      font-family: serif; /* Serif font */
+      color: #000000; /* Black text */
+      font-style: italic; 
+      border: 1px solid #f49cc8; /* #f49cc8 border */
+      padding: 20px; /* Add some padding for better readability */
+      display: inline-block; /* Make the quote container an inline-block element */
+      max-width: fit-content; /* Make the border wrap around the text */
+    }
+  </style>
+</head>
 <body>
-  <p class="manifestation-journal"><bold>A Guided Journal for Daily Manifestation</bold></p>
+  <!-- Display the manifestation journal title -->
+  <p class="manifestation-journal"><b>A Guided Journal for Daily Manifestation</b></p>
+
+  <!-- Display the random quote -->
+  <div class="quote" id="quote"></div>
+
+  <script>
+    // Array of quotes
+    const quotes = [
+      "Believe you can and you're halfway there.",
+      "The only way to do great work is to love what you do.",
+      "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+      "Don't watch the clock; do what it does. Keep going.",
+      "You miss 100% of the shots you don't take.",
+      "Dream big, work hard, stay focused, and surround yourself with good people.",
+      "The future belongs to those who believe in the beauty of their dreams.",
+      "Act as if what you do makes a difference. It does.",
+      "The secret of getting ahead is getting started.",
+      "Believe in yourself and all that you are.",
+      "What you think, you become.",
+      "Your life is as good as your mindset.",
+      "Success doesn’t come from what you do occasionally. It comes from what you do consistently.",
+      "Positive thinking will let you do everything better than negative thinking will.",
+      "You are what you believe yourself to be.",
+      "Your only limit is your mind.",
+      "The more you praise and celebrate your life, the more there is in life to celebrate.",
+      "Create the highest, grandest vision possible for your life, because you become what you believe.",
+      "Believe in your infinite potential. Your only limitations are those you set upon yourself.",
+      "Whatever the mind can conceive and believe, it can achieve.",
+      "Your mind is a powerful thing. When you fill it with positive thoughts, your life will start to change.",
+      "Don't wait for the right moment, create it.",
+      "What you think, you create. What you feel, you attract. What you imagine, you become.",
+      "Everything you need is already within you.",
+      "Success is a journey, not a destination.",
+      "The more you focus on the good, the more good comes into your life.",
+      "Gratitude turns what we have into enough.",
+      "The universe is not outside of you. Look inside yourself; everything that you want, you already are.",
+      "Visualize your highest self, then show up as them.",
+      "Focus on where you want to go, not on what you fear.",
+      "Energy flows where attention goes.",
+      "Trust the timing of your life.",
+      "The only limit to our realization of tomorrow is our doubts of today.",
+      "Be mindful of your self-talk, it’s a conversation with the universe.",
+      "The thoughts you think today are creating your future.",
+      "The things you are passionate about are not random, they are your calling.",
+      "Opportunities don't happen, you create them.",
+      "Everything is energy, and that's all there is to it.",
+      "Expect nothing, appreciate everything.",
+      "Start where you are, use what you have, do what you can.",
+      "Your thoughts shape your reality.",
+      "Manifest what you seek by letting go of what blocks you.",
+      "You are the creator of your own destiny.",
+      "Don't be afraid to fail. Be afraid not to try.",
+      "Success doesn’t just find you. You have to go out and get it.",
+      "Decide what you want, believe you deserve it, and the universe will serve it to you.",
+      "Your vibe attracts your tribe.",
+      "Every moment is a fresh beginning.",
+      "Dream it, believe it, build it.",
+      // Add more quotes to the array as needed
+    ];
+
+    // Function to generate a random quote
+    function getRandomQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+      document.getElementById("quote").innerHTML = randomQuote;
+    }
+
+    // Generate a random quote on page load
+    getRandomQuote();
+  </script>
 </body>
+</html>
