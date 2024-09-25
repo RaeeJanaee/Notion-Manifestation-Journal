@@ -1,25 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>A Guided Journal for Daily Manifestation</title>
+  <title>Manifestation Journal with Quote Generator</title>
   <style>
-    /* Styles for the manifestation journal page */
+    /* Styles for the manifestation journal and quote generator */
     body {
-      /* Set the background color to white */
-      background-color: #FFFFFF;
+      background-color: #FFFFFF; /* White background */
     }
     .manifestation-journal {
-      /* Set the font family to serif */
-      font-family: serif;
-      /* Set the text color to #f49cc8 */
-      color: #f49cc8;
-      /* Set the font size to 36 pixels (adjust as needed) */
-      font-size: 20px;
+      font-family: serif; /* Serif font */
+      color: #f49cc8; /* Color f49cc8 */
+      font-size: 36px; /* You can adjust the font size as needed */
+      white-space: nowrap; /* Keep the text on one line */
+      margin-bottom: 20px; /* Add some margin to separate the title and quote */
+    }
+    .quote {
+      font-family: serif; /* Serif font */
+      color: #000000; /* Black text */
+      font-style: italic; /* Italicized text */
+      border: 1px solid #f49cc8; /* #f49cc8 border */
+      padding: 20px; /* Add some padding for better readability */
+      display: inline-block; /* Make the quote container an inline-block element */
+      max-width: fit-content; /* Make the border wrap around the text */
     }
   </style>
 </head>
 <body>
-  <!-- Display the manifestation journal text -->
-  <p class="manifestation-journal">A Guided Journal for Daily Manifestation</p>
+  <!-- Display the manifestation journal title -->
+  <p class="manifestation-journal"><b>A Guided Journal for Daily Manifestation</b></p>
+
+  <!-- Display the random quote -->
+  <div class="quote" id="quote"></div>
+
+  <script>
+    // Array of quotes
+    const quotes = [
+      "Believe you can and you're halfway there.",
+      "The only way to do great work is to love what you do.",
+      "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+      "Don't watch the clock; do what it does. Keep going.",
+      "You miss 100% of the shots you don't take.",
+      // Add more quotes to the array as needed
+    ];
+
+    // Function to generate a random quote
+    function getRandomQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+      document.getElementById("quote").innerHTML = randomQuote;
+    }
+
+    // Generate a random quote on page load
+    getRandomQuote();
+  </script>
 </body>
 </html>
