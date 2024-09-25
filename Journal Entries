@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manifestation Journal with Quote Generator</title>
+  <style>
+    /* Styles for the manifestation journal and quote generator */
+    body {
+      background-color: #FFFFFF; /* White background */
+      text-align: center; /* Center the quote horizontally */
+    }
+    .manifestation-journal {
+      font-family: serif; /* Serif font */
+      color: #f49cc8; /* Color f49cc8 */
+      font-size: 24px; /* You can adjust the font size as needed */
+    }
+</style>
+</head>
+<body>
+  <!-- Display the manifestation journal title -->
+  <p class="manifestation-journal"><b>Journal Entries</b></p>
+</body>
+</html>
