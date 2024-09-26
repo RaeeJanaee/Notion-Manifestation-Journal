@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manifestation Journal Timer</title>
+  <style>
+    /* Styles for the manifestation journal timer */
+    body {
+      background-color: #FFFFFF; /* White background */
+      text-align: center; /* Center the timer */
+    }
+    .timer {
+      font-family: serif; /* Serif font */
+      color: #f49cc8; /* Color f49cc8 */
+      font-size: 48px; /* Adjust the font size as needed */
+      margin-bottom: 20px; /* Add some margin to separate the timer and buttons */
+    }
+    .timer-input {
+      font-family: serif; /* Serif font */
+      color: #000000; /* Black text */
+      font-size: 24px; /* Adjust the font size as needed */
+      width: 50px; /* Set the width of the input field */
+      height: 30px; /* Set the height of the input field */
+      padding: 10px; /* Add some padding to the input field */
+      border: 1px solid #f49cc8; /* #f49cc8 border */
+      border-radius: 5px; /* Add a border radius to the input field */
+      text-align: center; /* Center the text */
+    }
+    .timer-button, .adjust-button {
+      font-family: serif; /* Serif font */
+      color: #000000; /* Black text */
+      font-size: 24px; /* Adjust the font size as needed */
+      padding: 10px 20px; /* Add some padding to the button */
+      border: 1px solid #f49cc8; /* #f49cc8 border */
+      border-radius: 5px; /* Add a border radius to the button */
+      background-color: #f49cc8; /* #f49cc8 background color */
+      cursor: pointer; /* Add a cursor pointer to the button */
+      margin: 5px; /* Add some margin between buttons */
+    }
+    .timer-button:hover, .adjust-button:hover {
+      background-color: #e6c9d8; /* #e6c9d8 background color on hover */
+    }
+    .adjust-buttons {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <!-- Display the timer -->
+  <div class="timer" id="timer">00:00</div>
+
+  <!-- Display the custom input field and buttons -->
+  <div>
+    <button class="adjust-button" id="decrease-button">-</button>
+    <input type="text" id="timer-input" class="timer-input" value="1" readonly>
+    <button class="adjust-button" id="increase-button">+</button>
+  </div>
+  <div>
+    <button class="timer-button" id="start-button">Start</button>
+    <button class="timer-button" id="stop-button">Stop</button>
+  </div>
+
+  <script>
+    // Get the timer, input field, and buttons
+    const timer = document.getElementById("timer");
+    const timerInput = document.getElementById("timer-input");
+    const startButton = document.getElementById("start-button");
+    const stopButton = document.getElementById("stop-button");
+    const increaseButton = document.getElementById("increase-button");
+    const decreaseButton = document.getElementById("decrease-button");
+
+    // Set the initial timer value and interval
+    let timerValue = 0;
+    let timerInterval;
+
+    // Function to increase the timer input value
+    function increaseTime() {
+      let currentValue = parseInt(timerInput.value);
+
+      if (currentValue < 5) {
+        currentValue += 1;
+      } else if (currentValue >= 5 && currentValue < 60) {
+        currentValue += 5;
+      }
+
+      if (currentValue > 60) {
+        currentValue = 60;
+      }
+
+      timerInput.value = currentValue;
+    }
+
+    // Function to decrease the timer input value
+    function decreaseTime() {
+      let currentValue = parseInt(timerInput.value);
+
+      if (currentValue > 5) {
+        currentValue -= 5;
+      } else if (currentValue > 1 && currentValue <= 5) {
+        currentValue -= 1;
+      }
+
+      if (currentValue < 1) {
+        currentValue = 1;
+      }
+
+      timerInput.value = currentValue;
+    }
+
+    // Function to start the timer
+    function startTimer() {
+      // Clear any existing timer
+      clearInterval(timerInterval);
+
+      // Get the input value and convert it to seconds
+      const inputValue = parseInt(timerInput.value);
+      timerValue = inputValue * 60;
+
+      // Update the timer display
+      updateTimerDisplay();
+
+      // Start the timer interval
+      timerInterval = setInterval(() => {
+        // Decrement the timer value
+        timerValue -= 1;
+
+        // Update the timer display
+        updateTimerDisplay();
+
+        // Check if the timer has reached 0
+        if (timerValue <= 0) {
+          // Clear the timer interval
+          clearInterval(timerInterval);
+          timer.textContent = "Time's up!";
+        }
+      }, 1000);
+    }
+
+    // Function to stop the timer
+    function stopTimer() {
+      // Clear the timer interval
+      clearInterval(timerInterval);
+    }
+
+    // Function to update the timer display
+    function updateTimerDisplay() {
+      if (timerValue >= 0) {
+        // Convert the timer value to minutes and seconds
+        const minutes = Math.floor(timerValue / 60);
+        const seconds = timerValue % 60;
+
+        // Update the timer display
+        timer.textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      }
+    }
+
+    // Add event listeners to the buttons
+    startButton.addEventListener("click", startTimer);
+    stopButton.addEventListener("click", stopTimer);
+    increaseButton.addEventListener("click", increaseTime);
+    decreaseButton.addEventListener("click", decreaseTime);
+  </script>
+</body>
+</html>
