@@ -70,7 +70,7 @@
     const decreaseButton = document.getElementById("decrease-button");
 
     // Set the initial timer value and interval
-    let timerValue = 0;
+    let timerValue = parseInt(timerInput.value) * 60;
     let timerInterval;
 
     // Function to increase the timer input value
@@ -88,6 +88,12 @@
       }
 
       timerInput.value = currentValue;
+
+      // Reset timerValue if timer is not running
+      if (!timerInterval) {
+        timerValue = currentValue * 60;
+        updateTimerDisplay();
+      }
     }
 
     // Function to decrease the timer input value
@@ -105,19 +111,24 @@
       }
 
       timerInput.value = currentValue;
+
+      // Reset timerValue if timer is not running
+      if (!timerInterval) {
+        timerValue = currentValue * 60;
+        updateTimerDisplay();
+      }
     }
 
     // Function to start the timer
     function startTimer() {
-      // Clear any existing timer
-      clearInterval(timerInterval);
+      // If timer is already running, do nothing
+      if (timerInterval) return;
 
-      // Get the input value and convert it to seconds
-      const inputValue = parseInt(timerInput.value);
-      timerValue = inputValue * 60;
-
-      // Update the timer display
-      updateTimerDisplay();
+      // If timerValue is zero, initialize it
+      if (timerValue <= 0) {
+        const inputValue = parseInt(timerInput.value);
+        timerValue = inputValue * 60;
+      }
 
       // Start the timer interval
       timerInterval = setInterval(() => {
@@ -131,6 +142,7 @@
         if (timerValue <= 0) {
           // Clear the timer interval
           clearInterval(timerInterval);
+          timerInterval = null;
           timer.textContent = "Time's up!";
         }
       }, 1000);
@@ -140,6 +152,7 @@
     function stopTimer() {
       // Clear the timer interval
       clearInterval(timerInterval);
+      timerInterval = null;
     }
 
     // Function to update the timer display
@@ -153,6 +166,9 @@
         timer.textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
       }
     }
+
+    // Initial display update
+    updateTimerDisplay();
 
     // Add event listeners to the buttons
     startButton.addEventListener("click", startTimer);
